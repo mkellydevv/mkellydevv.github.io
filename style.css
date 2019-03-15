@@ -1,4 +1,5 @@
 html,body {
+    background-color:black;
     scroll-behavior: smooth;
     color:rgb(255,255,255,0.9);
     font-family: 'Montserrat', sans-serif;
@@ -10,7 +11,15 @@ html,body {
 h1,h2 {
     padding: .5rem!important;
     text-shadow:2px 2px #000000;
+    
 }
+
+/*.section_header {
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}*/
 
 h3 {
     text-shadow:1px 1px #000000;
@@ -27,6 +36,7 @@ section {
     pointer-events:auto!important;
     min-height:100vh;
     display:flex;
+    position:relative;
 }
 
 .section-transition {
@@ -44,7 +54,7 @@ section:first-of-type {
 .parallax-section-active {
     min-width:100%;
     position:fixed;
-    z-index:-1;
+    z-index:0;
 }
 
 .parallax-section-dummy {
@@ -100,30 +110,66 @@ section:first-of-type {
     background-repeat:no-repeat;
     background-size:cover;
     position:fixed;
-    z-index:-2;
+    
 }
 
-.home-container {
-    position:absolute;
-    top:37.5%;
-    height:100vh;
+
+.home_container {
+    position:fixed;
+    justify-content:center;
+    transform: translate(-50%,-50%);
+    top:50%;
+    left:50%;
+    width:90%;
     transition:500ms ease-in-out;
     text-align:center;
 }
 
-.home-container.scrolled {
+.home_scroll {
+    position:fixed;
+    justify-content:center;
+    bottom:5%;
+    left:50%;
+    transition:500ms ease-in-out;
+    transform: translate(-50%,-50%);
+    animation: bounce 1.5s infinite;
+    transition-timing-function: cubic-bezier(0.25, 0.75, 0.5, 1);
     opacity:0;
+}
+
+@keyframes bounce {
+    0%      { bottom: 5%; }
+    33%     { bottom: 8%; }
+    66%     { bottom: 5%; }
+    78%     { bottom: 6%; }
+    90%     { bottom: 5%; }
+    100%    { bottom: 5%; }
+}
+
+.home_container.scrolled, .home_scroll.scrolled {
+    opacity:0!important;
 }
 
 /* About Section */
 
 #about {
+
 }
 
 .center {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+#about_content {
+    position:absolute;
+    top:55%;
+    left:50%;
+    align-content: center;
+    justify-content:center;
+    transform: translate(-50%,-50%);
+    width:90%;
 }
 
 /* Skills Section */
@@ -254,9 +300,13 @@ li {
 /* Contact Section */
 
 #contact_content {
-    
+    top:50%;
+    left:50%;
+    position:absolute;
+    justify-content:center;
+    transform: translate(-50%,-50%);
+    width:90%;
 }
-
 
 
 /* Media Queries */
@@ -264,7 +314,9 @@ li {
 
 @media (max-width: 576px) {
 
-
+    .navbar {
+        width:auto!important;
+    }
 
     h1 {
         text-align:center;
@@ -275,8 +327,7 @@ li {
     }
 
     .lead {
-        font-size: 1.25rem;
-        font-weight: 400;
+        font-size: 1rem;
     }
 }
 

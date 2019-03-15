@@ -5,13 +5,13 @@ $(document).ready(function(){
         let new_scroll_top = $(this).scrollTop();
         let scroll_dir = (new_scroll_top > prev_scroll_top) ? 'down' : 'up';
 
-        updateSectionParallax(y_offset,null);
+        updateSectionParallax(scroll_dir,y_offset,null);
 
         // Add and remove scrolled class from various elements
         if(new_scroll_top > 0)
-            $('.home-container').addClass('scrolled');
+            $('.home_container, .home_scroll').addClass('scrolled');
         else 
-            $('.home-container').removeClass('scrolled');
+            $('.home_container').removeClass('scrolled');
         
         prev_scroll_top = new_scroll_top; 
     };
@@ -26,6 +26,12 @@ $(document).ready(function(){
 
     const updateSectionMap = function () {
         current_section = sections[0];
+
+        if($(window).width() <= 576) {
+            $('.navbar').addClass("navbar-dark bg-dark");
+        } else {
+            $('.navbar').removeClass("navbar-dark bg-dark");
+        }
 
         let $sections = $('.parallax-section');
         window_height = $(window).height();
@@ -45,11 +51,6 @@ $(document).ready(function(){
             let offset = $section.offset();
             let parallax_ratio = $section.data('speed') || null;
 
-            // Check if section overflows
-            /*if (checkSectionOverflow(id) === true)
-                $(`#${id} > .section_buffer`).addClass('buffer_height');
-            else
-                $section.removeClass('section_height')*/
 
             section_map.set(id,{
                 fixed_top:      -(dim.height-window_height),
@@ -78,11 +79,10 @@ $(document).ready(function(){
                 $(`#${current_section}_link`).addClass('active');
             }
         }
-        console.log('bbb',current_section)
         $(`#${current_section}_link`).addClass('active');
     }
 
-    const updateSectionParallax = function (y_offset,parallax_ratio=null) {
+    const updateSectionParallax = function (scroll_dir,y_offset,parallax_ratio=null) {
         let $sections = $('.parallax-section');
         let scroll_pos = $(this).scrollTop();
         let epsilon = 0.1;
@@ -93,8 +93,11 @@ $(document).ready(function(){
             let sec_data = section_map.get(id);
             let threshhold = scroll_pos + window_height + y_offset;
 
+            if (threshhold > sec_data.bottom) {
+                $section.addClass('hide-section');
+            }
+
             if (threshhold > sec_data.bottom && sec_data.dummy === null) {
-                console.log('next section',id,section_map.get(id),current_section)
 
                 // Add a dummy with the same dimensions as the section
                 let $dummy = document.createElement("div");
@@ -102,15 +105,12 @@ $(document).ready(function(){
                 $dummy.style.height = sec_data.height+'px';
                 $dummy.classList.add('parallax-section-dummy');
                 $section.after($dummy);
-                
                 sec_data.dummy = $dummy;
 
                 // Makes section have a fixed position
                 $section.css('top',sec_data.fixed_top+y_offset);
                 $section.addClass('parallax-section-active');
-                $section.addClass('hide-section');
 
-                console.log('switching next')
                 switchSection('next');
             } else if (sec_data.bottom >= threshhold && sec_data.dummy !== null) {
                 // Removes dummy, active, class and styling
@@ -121,6 +121,9 @@ $(document).ready(function(){
                 $section.removeClass('hide-section');
 
                 switchSection('prev');
+            } else if (scroll_dir === 'up' && sec_data.dummy !== null &&
+                sec_data.bottom >= scroll_pos + (window_height*0.9)) {
+                $section.removeClass('hide-section');
             }
         }
 
@@ -181,15 +184,25 @@ $(document).ready(function(){
     const addEM = function () {
         setTimeout(()=>{
             let parts = ['kelly.','devv','.com','@gmail','m.'];
-        let em = parts[4]+parts[0]+parts[1]+parts[3]+parts[2];
+            let em = parts[4]+parts[0]+parts[1]+parts[3]+parts[2];
 
-        $('#contact_em').append($(`<a href='mailto:${em}'>
-            <p>${em}</p>
-        </a>`));
-        $('#btn_copy_email').attr('data-clipboard-text',em);
+            $('#contact_em').append($(`<a href='mailto:${em}'>
+                <p>${em}</p>
+            </a>`));
+            $('#btn_copy_email').attr('data-clipboard-text',em);
         },1000);
     }
 
+    const addScrollIndicator = function () {
+        if ($(this).scrollTop() !== 0)
+            return;
+
+        setTimeout(()=>{
+            $('.home_scroll').css('opacity',1);
+        },3000);
+    }
+
+    addScrollIndicator();
     // Add obfuscated em
     addEM();
 
@@ -213,9 +226,10 @@ $(document).ready(function(){
 
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
-      
           // Run code here, resizing has "stopped"
           updateSectionMap();
+
+        
                   
         }, 500);
       
