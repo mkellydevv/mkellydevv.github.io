@@ -8,6 +8,15 @@ html,body {
     scroll-behavior: smooth;
 }
 
+html { overflow: hidden }
+
+body { 
+    height:100%; 
+    position:fixed; /* prevent overscroll bounce*/ 
+    overflow-y:scroll; 
+    -webkit-overflow-scrolling: touch; /* iOS velocity scrolling */ 
+}
+
 h1,h2 {
     padding: 0.5rem !important;
     text-shadow: 2px 2px #000000;
