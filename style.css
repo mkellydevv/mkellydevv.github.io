@@ -8,15 +8,6 @@ html,body {
     scroll-behavior: smooth;
 }
 
-html { overflow: hidden }
-
-body { 
-    height:100%; 
-    position:fixed; /* prevent overscroll bounce*/ 
-    overflow-y:scroll; 
-    -webkit-overflow-scrolling: touch; /* iOS velocity scrolling */ 
-}
-
 h1,h2 {
     padding: 0.5rem !important;
     text-shadow: 2px 2px #000000;
@@ -280,6 +271,17 @@ li {
 /* Media Queries */
 /* sm : 576px, md : 768px, lg : 992px, xl 1200px */
 
+@media (max-width: 992px) {
+    .social a {
+        font-size: 4em;
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+}
+
 @media (max-width: 576px) {
 
     .navbar {
@@ -297,16 +299,21 @@ li {
     .lead {
         font-size: 1rem;
     }
-}
 
-@media (max-width: 768px) {
-    
-}
+    .section_top_buffer {
+        height: 3rem;
+    }
 
-@media (max-width: 992px) {
-    .social a {
-        font-size: 4em;
-        padding: 2rem;
+    #contact_content {
+        top:auto;
+        left:auto;
+        position:static;
+        justify-content:center;
+        transform: none;
+        width:100%;
     }
 }
+
+
+
 

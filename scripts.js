@@ -214,6 +214,8 @@ $(document).ready(function(){
     let current_section = sections[0];
     let y_offset = 0; // $('.navbar').outerHeight();
     let window_height = $(window).height();
+    let window_width = $(window).width();
+    let starting_width = window_width;
     let prev_scroll_top = $(window).scrollTop();
     let section_map = new Map();
     let resizeTimer;
@@ -262,6 +264,11 @@ $(document).ready(function(){
     $(window).scroll(()=>{handleScroll();});
     
     $(window).resize(()=>{
+        // Mobile address bar fix
+        if ($(window).width() < 576 && starting_width < 576) {
+            return;
+        }
+        
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
           updateSectionMap();
