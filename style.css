@@ -284,6 +284,10 @@ li {
 
 @media (max-width: 576px) {
 
+    .home-image {
+        background-attachment: scroll;
+    }
+
     .navbar {
         width: auto !important;
     }
@@ -313,7 +317,3 @@ li {
         width:100%;
     }
 }
-
-
-
-
