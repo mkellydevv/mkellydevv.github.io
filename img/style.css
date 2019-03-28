@@ -63,7 +63,7 @@ section {
     background-color: rgba(0,0,0,0);
     margin: 0 !important;
     padding: 1rem !important;
-    pointer-events: auto!important;
+    
     position: fixed;
     transition: 500ms ease-in-out;
     width: 100%;
@@ -74,10 +74,15 @@ section {
 }
 
 .navbar a {
+    pointer-events: auto!important;
     color: white !important;
     font-size: 1.25rem;
     font-weight: 300;
     text-shadow: 1px 1px #000000;
+}
+
+.navbar-toggler {
+    pointer-events: auto!important;
 }
 
 .nav-link.active {
@@ -257,6 +262,10 @@ li {
     overflow: visible;
 }
 
+.text-muted {
+
+}
+
 /* Contact Section */
 
 #contact_content {
@@ -286,6 +295,8 @@ li {
 
     .home-image {
         background-attachment: scroll;
+        background-size: auto;
+        height: 150%;
     }
 
     .navbar {
@@ -309,11 +320,19 @@ li {
     }
 
     #contact_content {
-        top:auto;
-        left:auto;
-        position:static;
-        justify-content:center;
+        justify-content: center;
+        left: auto;
+        position: static;
+        top: auto;
         transform: none;
-        width:100%;
+        width: 100%;
+    }
+
+    .modal-title {
+        text-align:center;
+    }
+
+    .modal-title > small {
+        display:none;
     }
 }
