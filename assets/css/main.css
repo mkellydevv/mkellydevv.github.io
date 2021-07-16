@@ -1264,6 +1264,11 @@ input, select, textarea {
 			right: 0;
 		}
 
+		.skills {
+			display:grid;
+			grid-template-columns: repeat(4, 1fr);
+		}
+
 		.panel__info {
 			padding-right: 1em;
 			min-height: 9em;
