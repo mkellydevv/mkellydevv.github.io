@@ -1348,6 +1348,12 @@ input, select, textarea {
 			opacity: 0;
 		}
 
+		@media screen and (max-width: 1024px) {
+			.poptrox-popup .caption {
+				opacity: 1;
+			}
+		}
+
 		.poptrox-popup:hover .caption {
 			opacity: 1;
 		}
