@@ -1069,7 +1069,7 @@ input, select, textarea {
 		background: rgba(36, 38, 41, 0.975);
 		bottom: 4em;
 		left: 0;
-		max-height: calc(80vh - 4em);
+		max-height: calc(100vh);
 		overflow-y: auto;
 		position: fixed;
 		width: 100%;
@@ -1271,6 +1271,23 @@ input, select, textarea {
 
 		.skills .skill_bold {
 			font-weight: 700;
+		}
+
+		.avatar__container {
+			height: 45em;
+		}
+
+		.avatar__container .avatar {
+			object-fit: contain;
+			height: 100%;
+		}
+
+		.copy {
+
+		}
+
+		.copy-link {
+			transition: 0.5s ease-in-out;
 		}
 
 		.panel__info {
@@ -2097,6 +2114,7 @@ input, select, textarea {
 	#footer .copyright {
 		color: #505051;
 		font-size: 0.9em;
+		margin-bottom: 0;
 	}
 
 		#footer .copyright a {

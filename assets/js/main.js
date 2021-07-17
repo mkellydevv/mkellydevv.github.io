@@ -278,4 +278,31 @@
 					$main[0]._poptrox.windowMargin = 50;
 				});
 
+	$(".copy").on("click", copy);
 })(jQuery);
+
+
+function copy() {
+	const arr = ['m.', 'kelly.', 'devv', '@gmail.com'];
+    const type = "text/plain";
+    const blob = new Blob([arr.join("")], { type });
+    const data = [new ClipboardItem({ [type]: blob })];
+
+	const link = $(".copy-link");
+
+    navigator.clipboard.write(data).then(
+        function () {
+        	link.text("Copied");
+			link.animate({opacity:1},0);
+			link.animate({opacity:0},400);
+			setTimeout(()=>{
+				link.text(`E-mail`);
+				link.animate({opacity:0},0);
+				link.animate({opacity:1},400);
+			}, 400);
+        },
+        function () {
+        /* failure */
+        }
+    );
+}
