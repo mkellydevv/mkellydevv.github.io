@@ -1069,7 +1069,7 @@ input, select, textarea {
 		background: rgba(36, 38, 41, 0.975);
 		bottom: 4em;
 		left: 0;
-		max-height: calc(100vh);
+		max-height: calc(95vh);
 		overflow-y: auto;
 		position: fixed;
 		width: 100%;
@@ -1419,9 +1419,9 @@ input, select, textarea {
 				display: none;
 			}
 
-			.poptrox-popup .caption {
+			/* .poptrox-popup .caption {
 				display: none !important;
-			}
+			} */
 
 			.poptrox-popup .closer,
 			.poptrox-popup .nav-previous,
