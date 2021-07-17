@@ -1269,6 +1269,10 @@ input, select, textarea {
 			grid-template-columns: repeat(4, 1fr);
 		}
 
+		.skills .skill_bold {
+			font-weight: 700;
+		}
+
 		.panel__info {
 			padding-right: 1em;
 			min-height: 9em;
