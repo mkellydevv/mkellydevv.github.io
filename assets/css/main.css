@@ -1371,7 +1371,7 @@ input, select, textarea {
 			-webkit-transition: opacity 0.2s ease-in-out;
 			-ms-transition: opacity 0.2s ease-in-out;
 			transition: opacity 0.2s ease-in-out;
-			opacity: 0;
+			opacity: 1;
 		}
 
 		@media screen and (max-width: 1024px) {
